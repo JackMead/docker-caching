@@ -11,13 +11,13 @@ jobs:
           uses: ScribeMD/docker-cache@0.3.7
           with:
             key: docker-${{ runner.os }}
-        - run: docker build --tag my-image --cache-from my-image .
+        - run: docker buildx build --tag my-image .
     build-cache-manual:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
         - uses: docker/setup-buildx-action@v3
-        - run: docker build --tag my-image --cache-to type=gha,mode=max --cache-from type=gha .
+        - run: docker buildx build --tag my-image --cache-to type=gha,mode=max --cache-from type=gha .
     build-with-docker:
       name: Build with Docker
       runs-on: ubuntu-20.04
