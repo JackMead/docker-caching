@@ -17,17 +17,11 @@ jobs:
     build-cache-manual:
       runs-on: ubuntu-latest
       steps:
-        - uses: docker/setup-buildx-action@v3
         - uses: actions/checkout@v3
-        - name: Cache Docker layers
-          id: cache
-          uses: actions/cache@v2
-          with:
-            path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}
-            restore-keys: |
-              ${{ runner.os }}-docker-
+        - uses: docker/setup-buildx-action@v3
         - run: docker buildx build --tag my-image --cache-to type=gha,mode=max --cache-from type=gha -o type=image .
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
     build-with-docker:
       name: Build with Docker
       runs-on: ubuntu-20.04
