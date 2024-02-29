@@ -10,7 +10,7 @@ jobs:
           uses: ScribeMD/docker-cache@0.3.7
           with:
             key: docker-${{ runner.os }}
-        - run: docker build --tag my-image .
+        - run: docker build --tag my-image --cache-from my-image .
     build-cache-manual:
       runs-on: ubuntu-latest
       steps:
