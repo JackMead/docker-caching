@@ -25,6 +25,8 @@ jobs:
           env: 
             ACTIONS_RUNTIME_TOKEN: ${{ github.token }}
             # ACTIONS_RUNTIME_URL: ${{ github.api_url}}
+        - run: echo "$ACTIONS_RUNTIME_TOKEN && $ACTIONS_RUNTIME_URL"
+        - run: echo ${{ github.token }}
     build-with-docker:
       name: Build with Docker
       runs-on: ubuntu-20.04
