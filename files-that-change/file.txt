@@ -3,3 +3,5 @@ Has now some text
 And some more
 
 This file has changed again
+
+And another line
