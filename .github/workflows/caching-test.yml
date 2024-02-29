@@ -11,3 +11,8 @@ jobs:
           with:
             key: docker-${{ runner.os }}
         - run: docker build --tag my-image .
+    build-cache-manual:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - run: docker build --tag my-image --cache-to type=gha --cache-from type=gha .
